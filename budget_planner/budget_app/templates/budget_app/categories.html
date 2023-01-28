@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List of categories</title>
+    <link
+            rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'budget_app/style.css' %}"/>
+</head>
+<body>
+<main class="container">
+    <h1>List of categories</h1>
+    <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+        <ul>
+            <li><a href="/" role="button">Back to homepage</a></li>
+        </ul>
+    </nav>
+    {% if messages %}
+    <div class="messages" style="text-align: center">
+        {% for message in messages %}
+        <div {% if message.tags %} class="successlist {{ message.tags }}" {% endif %}>
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% for category in categories%}
+    <ul>
+        <li style="display: flex; justify-content: space-between">
+            <p>{{category.name}}</p>
+            <a href="{% url 'delete_category' category.id %}" class="secondary" role="button" style="text-align: right">Delete</a>
+        </li>
+    </ul>
+    {% endfor %}
+</main>
+</body>
+</html>

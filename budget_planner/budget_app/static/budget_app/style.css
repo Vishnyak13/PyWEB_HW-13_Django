@@ -1,0 +1,8 @@
+.errorlist {
+    background-color: lightgray;
+    color: tomato;
+}
+.successlist {
+    background-color: lightgray;
+    color: green;
+}

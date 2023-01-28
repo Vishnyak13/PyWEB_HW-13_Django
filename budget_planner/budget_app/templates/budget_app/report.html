@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Report</title>
+    <link
+            rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'budget_app/style.css' %}"/>
+</head>
+<body>
+<main class="container">
+    <h1>Report</h1>
+    <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+        <ul>
+            <li><a href="/" role="button">Back to homepage</a></li>
+        </ul>
+    </nav>
+    {% if messages %}
+    <div class="messages" style="text-align: center">
+        {% for message in messages %}
+        <div {% if message.tags %} class="errorlist {{ message.tags }}" {% endif %}>
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <form method="POST" action="{% url 'report' %}">
+        {% csrf_token %}
+        <div style="padding: 10px">
+            <label for="">Select the first date for report</label>
+            <input type="date" name="start_date" class="form-control">
+        </div>
+        <div style="padding: 10px">
+            <label for="">Select the last date for report</label>
+            <input type="date" name="end_date" class="form-control">
+        </div>
+        <div class="grid">
+            <button type="submit">Submit</button>
+            <button type="reset" class="secondary">Reset</button>
+        </div>
+
+        <div>
+            <ul>
+                <li><span>Total expenses in selected period is: {{sum_expenses}}</span></li>
+                <li><span>Total income in selected period is: {{sum_incomes}}</span></li>
+                <li><span>Balance in selected period is: {{balance}}</span></li>
+            </ul>
+
+        </div>
+    </form>
+</main>
+</body>
+</html>
+

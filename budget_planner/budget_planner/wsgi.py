@@ -1,5 +1,5 @@
 """
-WSGI config for finance_planner project.
+WSGI config for budget_planner project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'finance_planner.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'budget_planner.settings')
 
 application = get_wsgi_application()

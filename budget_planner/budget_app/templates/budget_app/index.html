@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>My budget planner</title>
+    <link
+            rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'budget_app/style.css' %}"/>
+</head>
+<body>
+<main class="container">
+    <h1>My budget application</h1>
+    <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+        <ul style="margin-left: auto">
+            <li><a href="{% url 'add_expense' %}" role="button">Add Expense</a></li>
+            <li><a href="{% url 'add_income' %}" role="button">Add Income</a></li>
+            <li><a href="{% url 'add_category' %}" role="button">Add Category</a></li>
+            <li><a href="{% url 'categories' %}" role="button">List of Сategories</a></li>
+            <li><a href="{% url 'report' %}" role="button">Report</a></li>
+        </ul>
+    </nav>
+    {% if messages %}
+    <div class="messages" style="text-align: center">
+        {% for message in messages %}
+        <div {% if message.tags %} class="successlist {{ message.tags }}" {% endif %}>
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="app-table">
+        <table border="1" cellspacing="0" cellpadding="12">
+            <h4>Expenses</h4>
+            <thead style="background: palegoldenrod">
+            <tr>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{expense.amount}}</td>
+                <td>{{expense.category}}</td>
+                <td>{{expense.description}}</td>
+                <td>{{expense.date}}</td>
+                <td style="background: rgba(0,139,139,0.21)">
+                    <a href="{% url 'edit_expense' expense.id  %}" class="btn btn-secondary btn-sm">Edit</a>
+                </td>
+                <td style="background: rgba(240,128,128,0.29)">
+                    <a href="{% url 'delete_expense' expense.id  %}" class="btn btn-secondary btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="app-table">
+        <table border="1" cellspacing="0" cellpadding="12">
+            <h4>Income</h4>
+            <thead style="background: #b1d5a0">
+            <tr>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for income in incomes %}
+            <tr>
+                <td>{{income.amount}}</td>
+                <td>{{income.category}}</td>
+                <td>{{income.description}}</td>
+                <td>{{income.date}}</td>
+
+                <td style="background: rgba(0,139,139,0.21)">
+                    <a href="{% url 'edit_income' income.id  %}" class="btn btn-secondary btn-sm">Edit</a>
+                </td>
+                <td style="background: rgba(240,128,128,0.29)">
+                    <a href="{% url 'delete_income' income.id  %}" class="btn btn-secondary btn-sm">Delete</a>
+                </td>
+            </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>
