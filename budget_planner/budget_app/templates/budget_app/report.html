@@ -28,7 +28,7 @@
     <form method="POST" action="{% url 'report' %}">
         {% csrf_token %}
         <div style="padding: 10px">
-            <label for="">Select the first date for report</label>
+            <label for="">Select the start date for report</label>
             <input type="date" name="start_date" class="form-control">
         </div>
         <div style="padding: 10px">
@@ -42,8 +42,8 @@
 
         <div>
             <ul>
-                <li><span>Total expenses in selected period is: {{sum_expenses}}</span></li>
-                <li><span>Total income in selected period is: {{sum_incomes}}</span></li>
+                <li><span>Total expenses in the period from {{date_started}} to {{date_ended}}: {{sum_expenses}}</span></li>
+                <li><span>Total income in the period from {{date_started}} to {{date_ended}}: {{sum_incomes}}</span></li>
                 <li><span>Balance in selected period is: {{balance}}</span></li>
             </ul>
 
