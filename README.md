@@ -1,5 +1,5 @@
 # PyWEB_HW-13_Django
-## Home work #12 - Budget planner application with Django
+## Home work #13 - Budget planner application with Django
 
 Створіть web-застосунок обліку особистих фінансів за допомогою Django. Застосунок повинен давати можливість зберігати всі доходи та витрати за декількома категоріями та будувати звіт сумарних доходів/витрат за вказаний період часу.
 
